@@ -41,8 +41,48 @@ then print
 
 
 """
-def main(argv):
+
+def textFileProccess():
    return 0
 
-if __name__ == "__main__":
-   main()
+def unigramSentenceGenerator():
+	print("Unigram")
+	return 0
+def bigramSentenceGenerator():
+   return 0
+
+def trigramSentenceGenerator():
+   return 0
+
+def main(argv):
+	"""
+	Chatterbot 1 10 pg2554.txt pg2600.txt pg1399.txt
+
+	argv[1] = uni, bi, tri
+	arv[2] = number of sentences
+	argv[3-whatever] = text files
+
+
+	split, lowercase
+	word, punctuation = tokens
+
+	each word is key
+	each occurance is a counter
+
+	
+	"""
+
+
+	numberOfSentences = sys.argv[2]
+
+	if int(sys.argv[1]) == 1:
+		unigramSentenceGenerator(numberOfSentences)
+	elif int(sys.argv[1]) == 2:
+		bigramSentenceGenerator(numberOfSentences)
+	elif int(sys.argv[1]) == 3:
+		trigramSentenceGenerator(numberOfSentences)
+	else:
+		print("Invalid Argument, please use 1-3 and not" + sys.argv[1])
+	return 0
+
+main(sys.argv)
