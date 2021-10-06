@@ -7,7 +7,7 @@ import random
 Henry Trinh
 Chatterbot (N-gram Sentence Generator)
 Description:
-    This program is a n-gram se
+    This program is a N-gram Sentence Generator program with the goal of taking text files
 
 Potential Output:
 
@@ -46,31 +46,44 @@ https://www.geeksforgeeks.org/python-arrays/
 """
 
 
+"""
+unigramCalculator(string text)
 
-def unigramCalculator(text):
+For unigram it takes the whole text and randomly pick a word from the text and add it to a sentence string.
+If the word the program picked is ".!?" then it will check if its 
+
+:param string text
+:return 0
+"""
+def unigramCalculator(text, numberOfSentences):
     unigramSentence = ""
-    sentenceBoundary = [".", "!", "?"]
+
+    #Sentence Boundary to end the sentence
+    sentenceBoundary = r'[.!?]'
+
+    #Goes through all the data and just randomly pick words from the list of text
+    counter = 0
     while(True):
         word = random.choice(text)
-        if word in sentenceBoundary:
-            unigramSentence += word
-
-            if len(unigramSentence) < 5:
-                unigramSentence = ""
+        if re.match(sentenceBoundary, word):
+            #This is to make sure the sentences are a at least a bit long enough.
+            if counter < int(numberOfSentences) + 1:
                 continue
             else:
+                unigramSentence += word
                 break
         else:
             unigramSentence += word + " "
+            counter += 1
 
     return unigramSentence
 
 
-def bigramCalculator(text):
+def bigramCalculator(text, numberOfSentences):
     bigramSentence = ""
     return bigramSentence
 
-def trigramCalculator(text):
+def trigramCalculator(text, numberOfSentences):
     trigramSentence = ""
     return trigramSentence
 
@@ -95,21 +108,21 @@ rather then put it all into the same function with a if statement.
 def unigramSentenceGenerator(numberOfSentences, text):
     for i in range (1, int(numberOfSentences) + 1):
         #Printing starts at 1 to numberofSentences
-        print(str(i) + "." + unigramCalculator(text))
+        print(str(i) + "." + unigramCalculator(text, numberOfSentences))
     return 0
 
 
 def bigramSentenceGenerator(numberOfSentences, text):
     for i in range (1, int(numberOfSentences) + 1):
         # Printing starts at 1 to numberofSentences
-        print(str(i) + "." + bigramCalculator(text))
+        print(str(i) + "." + bigramCalculator(text, numberOfSentences))
     return 0
 
 
 def trigramSentenceGenerator(numberOfSentences, text):
     for i in range (1, int(numberOfSentences) + 1):
         # Printing starts at 1 to numberofSentences
-        print(str(i) + "." + trigramCalculator(text))
+        print(str(i) + "." + trigramCalculator(text,numberOfSentences))
     return 0
 
 
